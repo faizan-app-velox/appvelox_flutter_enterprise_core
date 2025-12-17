@@ -55,9 +55,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
       final result = await repository.getTransactions();
 
-      result.fold((failure) => emit(DashboardError(failure)), (
-        transactions,
-      ) {
+      result.fold((failure) => emit(DashboardError(failure)), (transactions) {
         // Calculate Revenue & Chart Data from the Entity List
         final totalRevenue = transactions
             .where((e) => e.type == TransactionType.income) // Check Enum

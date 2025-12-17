@@ -135,14 +135,8 @@ class AppTheme {
         fontSize: 16,
       ),
       bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
-      bodyMedium: TextStyle(
-        color: Color(0xFF94A3B8),
-        fontSize: 14,
-      ),
-      bodySmall: TextStyle(
-        color: Color(0xFF64748B),
-        fontSize: 12,
-      ),
+      bodyMedium: TextStyle(color: Color(0xFF94A3B8), fontSize: 14),
+      bodySmall: TextStyle(color: Color(0xFF64748B), fontSize: 12),
     );
 
     return ThemeData(
