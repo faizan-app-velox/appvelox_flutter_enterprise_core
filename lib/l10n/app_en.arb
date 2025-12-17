@@ -1,0 +1,32 @@
+{
+  "appTitle": "AppVelox Studio",
+  "monthlyRevenue": "Monthly Revenue",
+  "recentTransactions": "Recent Transactions",
+  "clientPayment": "Client Payment",
+  "paymentReceived": "Payment Received",
+  "subscriptionCost": "Subscription Cost",
+  "archService": "App Development Service",
+  "softLicense": "Software License",
+  "transferSuccessful": "Transfer Successful",
+  "paymentSent": "Payment Sent",
+  "statusCompleted": "Completed",
+  "shareReceipt": "Share Receipt",
+  "details": "Details",
+  "allTransactions": "All Transactions",
+  "seeAll": "See All",
+  "shareTransactionText": "Details: {amount}\nStatus: {status}\n\nSent via AppVelox Studio",
+  "@shareTransactionText": {
+    "description": "Text shared when exporting a transaction",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "noInternetConnection": "It seems, there is no internet access, try again later.",
+  "thereIsSomeProblem": "There is some problem!",
+  "tryAgain": "Try Again"
+}

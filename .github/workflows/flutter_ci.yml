@@ -1,0 +1,40 @@
+name: Flutter CI
+
+# Trigger: Run this pipeline when...
+on:
+  push:
+    branches: [ "main", "master" ] # ...code is pushed to main
+  pull_request:
+    branches: [ "main", "master" ] # ...or a Pull Request is opened
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest # Run on a Linux server hosted by GitHub
+
+    steps:
+      # 1. Download code from the repo
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Install Flutter on the server
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          # Uses the latest stable version automatically
+
+      # 3. Get dependencies (flutter pub get)
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # 4. Check for Formatting issues (Enforces 'dart format')
+      - name: Verify Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # 5. Run the Linter (Analysis Options)
+      - name: Analyze Code
+        run: flutter analyze
+
+      # 6. Run Unit & Widget Tests
+      - name: Run Tests
+        run: flutter test
