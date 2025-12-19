@@ -25,17 +25,9 @@ class DashboardSkeleton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // STATS SECTION
-            SkeletonBox(
-                width: 120,
-                height: 16,
-                color: colorScheme.surface
-            ),
+            SkeletonBox(width: 120, height: 16, color: colorScheme.surface),
             const SizedBox(height: 8),
-            SkeletonBox(
-                width: 200,
-                height: 42,
-                color: colorScheme.surface
-            ),
+            SkeletonBox(width: 200, height: 42, color: colorScheme.surface),
             const SizedBox(height: 30),
 
             // Chart
@@ -51,16 +43,8 @@ class DashboardSkeleton extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SkeletonBox(
-                  width: 150,
-                  height: 23,
-                  color: colorScheme.surface,
-                ),
-                SkeletonBox(
-                    width: 60,
-                    height: 20,
-                    color: colorScheme.surface
-                ),
+                SkeletonBox(width: 150, height: 23, color: colorScheme.surface),
+                SkeletonBox(width: 60, height: 20, color: colorScheme.surface),
               ],
             ),
             const SizedBox(height: 35),
