@@ -1,6 +1,6 @@
 # AppVelox Studio | Enterprise Architecture Demo
 
-![AppVelox Banner]()
+![AppVelox Banner](https://github.com/user-attachments/assets/39c728d8-5a61-47b0-a24a-ef0debda0198)
 
 **Clean Architecture. Scalable Foundation. Production Ready.**
 
@@ -29,7 +29,7 @@ Instead of a "Hello World" app, this project tackles real-world challenges:
 
 *See the Animations, Dark Mode, and Localization in action.*
 
-
+https://github.com/user-attachments/assets/bce55ec2-34cf-480e-a032-f25d759fd42c
 
 > *The UI features staggered list animations, a reactive chart, and instant theme switching.*
 
