@@ -80,7 +80,6 @@ layers (Domain) know nothing about the outer layers (UI/Data).
 * **Shared Components:**
     * **AppStatusWidget:** A versatile component for handling non-success states (Network Errors,
       Empty Lists, Validation Failures) with consistent UI.
-    * **EmptyStateWidget:** User-friendly feedback when lists are empty.
 
 ---
 
