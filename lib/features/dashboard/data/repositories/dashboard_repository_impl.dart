@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/data/utils/mock_transaction_generator.dart';
-import '../../../../core/domain/entities/transaction_type.dart';
 import '../../../../core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/domain/entities/transaction_entity.dart';
