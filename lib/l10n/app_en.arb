@@ -28,5 +28,7 @@
   },
   "noInternetConnection": "It seems, there is no internet access, try again later.",
   "thereIsSomeProblem": "There is some problem!",
-  "tryAgain": "Try Again"
+  "tryAgain": "Try Again",
+  "noTransactions": "No Transactions",
+  "noTransactionsFound": "No transactions found"
 }

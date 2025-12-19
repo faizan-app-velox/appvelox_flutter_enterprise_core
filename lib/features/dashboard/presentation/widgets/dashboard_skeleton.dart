@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/presentation/widgets/skeleton_box.dart';
+
 class DashboardSkeleton extends StatelessWidget {
   const DashboardSkeleton({super.key});
 
@@ -10,8 +12,9 @@ class DashboardSkeleton extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final baseColor = colorScheme.outlineVariant;
-
     final highlightColor = colorScheme.surface;
+
+    final innerContentColor = colorScheme.onSurface.withValues(alpha: 0.1);
 
     return Shimmer.fromColors(
       baseColor: baseColor,
@@ -22,32 +25,47 @@ class DashboardSkeleton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // STATS SECTION
-            _SkeletonBox(width: 120, height: 16, color: colorScheme.surface),
+            SkeletonBox(
+                width: 120,
+                height: 16,
+                color: colorScheme.surface
+            ),
             const SizedBox(height: 8),
-            _SkeletonBox(width: 200, height: 42, color: colorScheme.surface),
+            SkeletonBox(
+                width: 200,
+                height: 42,
+                color: colorScheme.surface
+            ),
             const SizedBox(height: 30),
-            _SkeletonBox(
+
+            // Chart
+            SkeletonBox(
               width: double.infinity,
               height: 150,
               color: colorScheme.surface,
+              radius: 16, // Use the new radius parameter if needed
             ),
             const SizedBox(height: 50),
 
-            // HEADER SECTION
+            // Header Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _SkeletonBox(
+                SkeletonBox(
                   width: 150,
                   height: 23,
                   color: colorScheme.surface,
                 ),
-                _SkeletonBox(width: 60, height: 20, color: colorScheme.surface),
+                SkeletonBox(
+                    width: 60,
+                    height: 20,
+                    color: colorScheme.surface
+                ),
               ],
             ),
             const SizedBox(height: 35),
 
-            // LIST SECTION
+            // Transaction list
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -70,7 +88,7 @@ class DashboardSkeleton extends StatelessWidget {
                           width: 44,
                           height: 44,
                           decoration: BoxDecoration(
-                            color: colorScheme.onSurface.withValues(alpha: 0.1),
+                            color: innerContentColor,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -82,20 +100,16 @@ class DashboardSkeleton extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _SkeletonBox(
+                              SkeletonBox(
                                 width: double.infinity,
                                 height: 16,
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.1,
-                                ),
+                                color: innerContentColor,
                               ),
                               const SizedBox(height: 6),
-                              _SkeletonBox(
+                              SkeletonBox(
                                 width: 100,
                                 height: 12,
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.1,
-                                ),
+                                color: innerContentColor,
                               ),
                             ],
                           ),
@@ -108,30 +122,6 @@ class DashboardSkeleton extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _SkeletonBox extends StatelessWidget {
-  final double width;
-  final double height;
-  final Color color;
-
-  const _SkeletonBox({
-    required this.width,
-    required this.height,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(4),
       ),
     );
   }

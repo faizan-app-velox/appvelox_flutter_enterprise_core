@@ -67,4 +67,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tryAgain => 'Try Again';
+
+  @override
+  String get noTransactions => 'No Transactions';
+
+  @override
+  String get noTransactionsFound => 'No transactions found';
 }

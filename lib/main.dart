@@ -6,11 +6,10 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/theme/app_theme.dart';
-import 'core/common/cubits/theme_cubit.dart';
-import 'core/common/cubits/language_cubit.dart';
-import 'features/dashboard/presentation/bloc/dashboard_bloc.dart';
-import 'injection.dart' as di;
-import 'injection.dart';
+import 'core/presentation/cubits/theme_cubit.dart';
+import 'core/presentation/cubits/language_cubit.dart';
+import 'core/di/injection.dart' as di;
+import 'core/di/injection.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -40,7 +39,6 @@ class AppVeloxCore extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.sl<ThemeCubit>()),
         BlocProvider(create: (_) => di.sl<LanguageCubit>()),
-        BlocProvider(create: (_) => di.sl<DashboardBloc>()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {

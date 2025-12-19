@@ -24,9 +24,11 @@
       "status": {
         "type": "String"
       }
-    },
-    "noInternetConnection": "Parece que no hay conexión a internet, inténtelo de nuevo más tarde.",
-    "thereIsSomeProblem": "¡Ha surgido un problema!",
-    "tryAgain": "Reintentar"
-  }
+    }
+  },
+  "noInternetConnection": "Parece que no hay conexión a internet, inténtelo de nuevo más tarde.",
+  "thereIsSomeProblem": "¡Ha surgido un problema!",
+  "tryAgain": "Reintentar",
+  "noTransactions": "Sin transacciones",
+  "noTransactionsFound": "No se encontraron transacciones"
 }

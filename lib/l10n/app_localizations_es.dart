@@ -60,11 +60,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noInternetConnection =>
-      'It seems, there is no internet access, try again later.';
+      'Parece que no hay conexión a internet, inténtelo de nuevo más tarde.';
 
   @override
-  String get thereIsSomeProblem => 'There is some problem!';
+  String get thereIsSomeProblem => '¡Ha surgido un problema!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Reintentar';
+
+  @override
+  String get noTransactions => 'Sin transacciones';
+
+  @override
+  String get noTransactionsFound => 'No se encontraron transacciones';
 }
