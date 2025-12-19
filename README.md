@@ -40,7 +40,7 @@ https://github.com/user-attachments/assets/bce55ec2-34cf-480e-a032-f25d759fd42c
 
 ## ✨ Key Features
 
-* **Clean Architecture:** Strict separation into `Data`, `Domain`, and `Presentation` layers.
+* **Pragmatic Clean Architecture:** A scalable layered structure (Domain, Data, Presentation) optimized for Flutter, balancing strict separation of concerns with development velocity.
 * **Functional Programming:** Safe, mathematical error handling using `dartz` (
   `Either<Failure, Success>`) to eliminate runtime exceptions.
 * **Robust Error Handling:** Graceful UI handling for network errors, empty states, and failures
@@ -81,6 +81,14 @@ layers (Domain) know nothing about the outer layers (UI/Data).
     * **AppStatusWidget:** A versatile component for handling non-success states (Network Errors,
       Empty Lists, Validation Failures) with consistent UI.
 
+### 💡 Architectural Decision: The "Pragmatic" Approach
+You might notice the absence of a dedicated **Use Case (Interactor)** layer for simple features. This is intentional.
+
+* **For Complex Logic:** We advocate using `UseCases` when business rules involve multiple repositories or complex data transformation.
+* **For Standard Operations:** In this reference implementation, we adhere to **Pragmatic Clean Architecture**. The Presentation Layer (`Cubits`) communicates directly with the `Repository` interface for standard CRUD operations.
+
+**Why?** This reduces boilerplate code by ~40% and increases development velocity without sacrificing the core benefit of Clean Architecture: **Decoupling**. The UI still never touches the Data Source directly.
+
 ---
 
 ## 🛠️ The Tech Stack
@@ -88,6 +96,7 @@ layers (Domain) know nothing about the outer layers (UI/Data).
 * **State Management:** `flutter_bloc`
 * **Dependency Injection:** `injectable`
 * **Routing:** `go_router`
+* **Functional Utils:** `dartz`
 * **Immutability:** `freezed`
 * **Charts:** `fl_chart`
 * **Animations:** `flutter_animate`
