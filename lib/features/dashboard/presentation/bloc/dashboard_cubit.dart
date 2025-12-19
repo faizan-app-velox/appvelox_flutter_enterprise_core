@@ -24,7 +24,15 @@ class DashboardCubit extends Cubit<DashboardState> {
           .fold(0.0, (sum, item) => sum + item.amount);
 
       // Generate Chart Data (Keeping your dummy logic for now)
-      final chartData = [3000.0, 5000.0, 4000.0, 7000.0, 5000.0, 8000.0, 6000.0];
+      final chartData = [
+        3000.0,
+        5000.0,
+        4000.0,
+        7000.0,
+        5000.0,
+        8000.0,
+        6000.0,
+      ];
 
       // Emit Loaded State
       emit(

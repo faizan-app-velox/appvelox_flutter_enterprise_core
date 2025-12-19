@@ -18,7 +18,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
     try {
       // Return dummy data
-      final List<TransactionEntity> transactions = MockTransactionGenerator.generateList(count: 5);
+      final List<TransactionEntity> transactions =
+          MockTransactionGenerator.generateList(count: 5);
 
       return Right(transactions);
     } catch (e) {

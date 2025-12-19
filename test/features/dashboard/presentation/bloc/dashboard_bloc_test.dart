@@ -58,7 +58,15 @@ void main() {
         DashboardState.loaded(
           transactions: tTransactions,
           totalRevenue: 100.0,
-          chartData: const [3000.0, 5000.0, 4000.0, 7000.0, 5000.0, 8000.0, 6000.0],
+          chartData: const [
+            3000.0,
+            5000.0,
+            4000.0,
+            7000.0,
+            5000.0,
+            8000.0,
+            6000.0,
+          ],
         ),
       ],
       verify: (_) {
