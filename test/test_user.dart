@@ -1,8 +1,0 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'test_user.freezed.dart';
-
-@freezed
-abstract class TestUser with _$TestUser {
-  const factory TestUser({required String name}) = _TestUser;
-}

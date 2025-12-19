@@ -1,40 +1,61 @@
-name: Flutter CI
+name: AppVelox CI
 
-# Trigger: Run this pipeline when...
+# This workflow runs on every push to main and master and every pull request
 on:
   push:
-    branches: [ "main", "master" ] # ...code is pushed to main
+    branches: [ "main",  "master"]
   pull_request:
-    branches: [ "main", "master" ] # ...or a Pull Request is opened
+    branches: [ "main" , "master"]
 
 jobs:
-  build_and_test:
-    runs-on: ubuntu-latest # Run on a Linux server hosted by GitHub
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
 
     steps:
-      # 1. Download code from the repo
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      # 1. Checkout the code
+      - uses: actions/checkout@v4
 
-      # 2. Install Flutter on the server
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+      # 2. Set up Java (Required for Android Build)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Set up Flutter
+      - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # Uses the latest stable version automatically
+          cache: true
 
-      # 3. Get dependencies (flutter pub get)
+      # 4. Install Dependencies
       - name: Install Dependencies
         run: flutter pub get
 
-      # 4. Check for Formatting issues (Enforces 'dart format')
+      # 5. Run Code Generator (Freezed/Injectable)
+      - name: Run Build Runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # 6. Check Formatting
       - name: Verify Formatting
         run: dart format --output=none --set-exit-if-changed .
 
-      # 5. Run the Linter (Analysis Options)
-      - name: Analyze Code
+      # 7. Analyze Code (Linting)
+      - name: Analyze
         run: flutter analyze
 
-      # 6. Run Unit & Widget Tests
+      # 8. Run Tests
       - name: Run Tests
         run: flutter test
+
+      # 9. Build Android APK (Proof of Compilation)
+      # We build release to ensure R8 shrinking works
+      - name: Build Android Release APK
+        run: flutter build apk --release --no-tree-shake-icons
+
+      # 10. Upload APK (Optional - lets you download the artifact from GitHub)
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

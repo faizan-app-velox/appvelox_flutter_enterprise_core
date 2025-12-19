@@ -1,27 +1,28 @@
+import 'package:appvelox_flutter_enterprise_core/core/domain/entities/transaction_type.dart';
 import 'package:appvelox_flutter_enterprise_core/core/error/failure.dart';
 import 'package:appvelox_flutter_enterprise_core/features/dashboard/domain/repositories/dashboard_repository.dart';
+import 'package:appvelox_flutter_enterprise_core/features/dashboard/presentation/bloc/dashboard_cubit.dart';
+import 'package:appvelox_flutter_enterprise_core/features/dashboard/presentation/bloc/dashboard_state.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:appvelox_flutter_enterprise_core/features/dashboard/domain/entities/transaction_entity.dart';
-import 'package:appvelox_flutter_enterprise_core/features/dashboard/domain/entities/transaction_type.dart';
-import 'package:appvelox_flutter_enterprise_core/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:appvelox_flutter_enterprise_core/core/domain/entities/transaction_entity.dart';
 
-// Create a Mock UseCase (Not Repository)
+// Create a Mock Repository
 class MockDashboardRepository extends Mock implements DashboardRepository {}
 
 void main() {
-  late DashboardBloc bloc;
+  late DashboardCubit cubit;
   late MockDashboardRepository mockDashboardRepository;
 
   setUp(() {
     mockDashboardRepository = MockDashboardRepository();
-    // Inject the Mock UseCase into the Bloc
-    bloc = DashboardBloc(repository: mockDashboardRepository);
+    // Inject the Mock Repository into the Bloc
+    cubit = DashboardCubit(mockDashboardRepository);
   });
 
-  // 2. Define Test Data (Using Enums)
+  // Define Test Data
   final tTransactions = [
     const TransactionEntity(
       id: 1,
@@ -38,26 +39,26 @@ void main() {
   ];
 
   group('DashboardBloc', () {
-    test('initial state should be DashboardLoading', () {
-      expect(bloc.state, DashboardLoading());
+    test('initial state should be DashboardState.initial', () {
+      expect(cubit.state, const DashboardState.initial());
     });
 
     // TEST CASE: SUCCESS
-    blocTest<DashboardBloc, DashboardState>(
-      'emits [DashboardLoading, DashboardLoaded] when data is found successfully',
+    blocTest<DashboardCubit, DashboardState>(
+      'emits [DashboardState.loading, DashboardState.loaded] when data is found successfully',
       build: () {
         when(
           () => mockDashboardRepository.getTransactions(),
         ).thenAnswer((_) async => Right(tTransactions));
-        return bloc;
+        return cubit;
       },
-      act: (bloc) => bloc.add(LoadDashboardData()),
+      act: (cubit) => cubit.loadData(),
       expect: () => [
-        DashboardLoading(),
-        DashboardLoaded(
+        const DashboardState.loading(),
+        DashboardState.loaded(
           transactions: tTransactions,
           totalRevenue: 100.0,
-          chartData: const [3.0, 5.0, 4.0, 7.0, 5.0, 8.0, 6.0],
+          chartData: const [3000.0, 5000.0, 4000.0, 7000.0, 5000.0, 8000.0, 6000.0],
         ),
       ],
       verify: (_) {
@@ -66,17 +67,19 @@ void main() {
     );
 
     // TEST CASE: FAILURE
-    blocTest<DashboardBloc, DashboardState>(
-      'emits [DashboardLoading, DashboardError] when getting data fails',
+    blocTest<DashboardCubit, DashboardState>(
+      'emits [DashboardState.loading, DashboardState.error] when getting data fails',
       build: () {
-        // Arrange: Return a Failure
         when(
           () => mockDashboardRepository.getTransactions(),
-        ).thenAnswer((_) async => Left(NoInternetFailure()));
-        return bloc;
+        ).thenAnswer((_) async => Left(SomeErrorFailure()));
+        return cubit;
       },
-      act: (bloc) => bloc.add(LoadDashboardData()),
-      expect: () => [DashboardLoading(), DashboardError(SomeErrorFailure())],
+      act: (cubit) => cubit.loadData(),
+      expect: () => [
+        const DashboardState.loading(),
+        DashboardState.error(SomeErrorFailure()),
+      ],
     );
   });
 }
