@@ -149,8 +149,5 @@ We follow a **Feature-First** structure for scalability.
 **AppVelox Studio** builds high-quality, maintainable mobile applications. This project demonstrates
 our commitment to code quality and architectural best practices.
 
-📧 **Contact us:
-** [faizan@appvelox.com](mailto:faizan@appvelox.com) • [Chat on WhatsApp](https://wa.me/919104861766)
-
 ---
 © 2025 AppVelox Studio. Built with ❤️ and Flutter.
